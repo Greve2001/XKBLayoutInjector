@@ -34,4 +34,4 @@ fi
 SYMBOLS_PATH=/usr/share/X11/xkb/symbols
 RULES_PATH=/usr/share/X11/xkb/rules
 
-cp LAYOUT "$SYMBOLS_PATH"/$LAYOUT
+cp $LAYOUT "$SYMBOLS_PATH"/$LAYOUT
