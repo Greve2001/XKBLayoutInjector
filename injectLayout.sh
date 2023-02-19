@@ -1,4 +1,13 @@
 #!/bin/bash
+SYMBOLS_PATH=/usr/share/X11/xkb/symbols
+RULES_PATH=/usr/share/X11/xkb/rules
+
+
+## Ask for Sudo ##
+if [ $EUID != 0 ]; then
+    sudo "$0" "$@"
+    exit $?
+fi
 
 ## Get arguments ##
 COUNTER=0
@@ -31,7 +40,7 @@ if [ -z "$NAME" ] || [ -z "$ABBR" ] || [ -z "$PATH" ]; then
     exit 1
 fi
 
-SYMBOLS_PATH=/usr/share/X11/xkb/symbols
-RULES_PATH=/usr/share/X11/xkb/rules
-
-cp $LAYOUT "$SYMBOLS_PATH"/$LAYOUT
+# cp $LAYOUT "$SYMBOLS_PATH"/$LAYOUT
+echo $LAYOUT
+echo $NAME
+echo $ABBR
