@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Get arguments
+## Get arguments ##
 COUNTER=0
 while getopts f:n:a: OPTION; do
     args+=("$OPTARG")
     case $OPTION in
-        f) # Layout File Path
-            PATH="${args[$COUNTER]}"
+        f) # Layout File Name
+            LAYOUT="${args[$COUNTER]}"
             let COUNTER++
             ;;
         n) # Layout Name
@@ -25,15 +25,13 @@ while getopts f:n:a: OPTION; do
 done
 shift "$(($OPTIND -1))"
 
-# Verify all arguments are given
+## Verify all arguments are given ##
 if [ -z "$NAME" ] || [ -z "$ABBR" ] || [ -z "$PATH" ]; then
     echo "Please provide all arguments"
     exit 1
 fi
 
-echo "Name: $NAME"
-echo "Abbreviation: $ABBR"
-echo "Path: $PATH"
-
 SYMBOLS_PATH=/usr/share/X11/xkb/symbols
 RULES_PATH=/usr/share/X11/xkb/rules
+
+cp LAYOUT "$SYMBOLS_PATH"/$LAYOUT
