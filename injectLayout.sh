@@ -40,7 +40,4 @@ if [ -z "$NAME" ] || [ -z "$ABBR" ] || [ -z "$PATH" ]; then
     exit 1
 fi
 
-# cp $LAYOUT "$SYMBOLS_PATH"/$LAYOUT
-echo $LAYOUT
-echo $NAME
-echo $ABBR
+ln -s $LAYOUT "$SYMBOLS_PATH"/$LAYOUT
