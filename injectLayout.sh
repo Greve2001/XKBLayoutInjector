@@ -2,26 +2,21 @@
 SYMBOLS_PATH=/usr/share/X11/xkb/symbols
 RULES_PATH=/usr/share/X11/xkb/rules
 
-## TODO
-# - Need to make description flag
-
-
-## Ask for Sudo ##
+## Ask for Sudo 
 if [ $EUID != 0 ]; then
     sudo "$0" "$@"
     exit $?
 fi
 
-## Get arguments ##
+## Get variables
 read -e -p "Path-to-file: " LAYOUT
 read -p "Name of Layout: " NAME
 read -p "Layout Abbreviation: " ABBR
 read -p "Description: " DESC
 
-
-## Verify all arguments are given ##
-if [ -z "$NAME" ] || [ -z "$ABBR" ] || [ -z "$PATH" ]; then
-    echo "Please provide all arguments"
+## Verify all arguments are given 
+if [ -z "$NAME" ] || [ -z "$ABBR" ] || [ -z "$LAYOUT" ] || [ -z "$DESC" ]; then
+    echo "Please make sure all arguments are not null and valid"
     exit 1
 fi
 

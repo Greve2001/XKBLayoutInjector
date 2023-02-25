@@ -10,5 +10,5 @@ I hope someone else will also get some use from this.
 ## Usage
 Run below command, and follow terminal prompts.
 ```
-    ./injectLayout.sh
+./injectLayout.sh
 ```
