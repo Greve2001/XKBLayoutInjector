@@ -1,17 +1,17 @@
 #!/usr/bin/awk -f
 
 BEGIN {
-XML_STRING="<layout>\n\
+xml_string="<layout>\n\
     <configItem>\n\
-      <name>"LAYOUT"</name>\n\
-      <shortDescription>"ABBR"</shortDescription>\n\
-      <description>"NAME"</description>\n\
+      <name>"layout"</name>\n\
+      <shortDescription>"abbr"</shortDescription>\n\
+      <description>"name"</description>\n\
     </configItem>\n\
     <variantList>\n\
       <variant>\n\
         <configItem>\n\
-          <name>"NAME"</name>\n\
-          <description>"DESC"</description>\n\
+          <name>"name"</name>\n\
+          <description>"desc"</description>\n\
         </configItem>\n\
       </variant>\n\
     </variantList>\n\
@@ -23,5 +23,5 @@ XML_STRING="<layout>\n\
 }
 
 /<layoutList>/{
-    print XML_STRING
+    print xml_string
 }  

@@ -19,14 +19,14 @@ main () {
     fi
 
 ## Create symlink 
-    ln -s $layout "$symbols_path"/$layout || exit 1
+    ln -s $layout "$symbols_path"/$layout
 
 ## Add XML to file
     evdev="$rules_path/evdev.xml"
     new_file="$(./xml_printer.awk -v name="$name" -v abbr="$abbr" -v layout="$layout" -v desc="$desc" $evdev)"
 
 ## Overwrite file
-    echo "$new_file" > $evdev
+    echo "$new_file" > "$evdev" && echo "Overwrite success"
 
 ## Print success message
     echo "Injection Complete!"
