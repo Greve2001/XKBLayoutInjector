@@ -12,3 +12,7 @@ Run below command, and follow terminal prompts.
 ```
 ./injectLayout.sh
 ```
+OBS! After running the script you will need to restart your machine for the change to take place.
+
+## Remarks
+- The script does not support injecting more than one variant of the layout. Therefor you will for now need to keeps it to one variant per layout.
