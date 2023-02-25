@@ -1,4 +1,6 @@
 #!/bin/bash
+EVDEV=evdev3.xml
+
 SYMBOLS_PATH=/usr/share/X11/xkb/symbols
 RULES_PATH=/usr/share/X11/xkb/rules
 
@@ -45,31 +47,6 @@ fi
 
 # ln -s $LAYOUT "$SYMBOLS_PATH"/$LAYOUT
 
+NEW_FILE="$(./xml_printer.awk -v NAME=$NAME -v ABBR=$ABBR -v LAYOUT=$LAYOUT $EVDEV)"
 
-
-XML_STRING="
-<layoutList>
-  <layout>
-    <configItem>
-      <name>$LAYOUT</name>
-      <shortDescription>$ABBR</shortDescription>
-      <description>$NAME</description>
-      <countryList>			<!-- Can be removed??? -->
-        <iso3166Id>DK</iso3166Id>
-      </countryList>
-      <languageList>		<!-- Can be removed??? -->
-        <iso639Id>dan</iso639Id>
-      </languageList>
-    </configItem>
-    <variantList>
-      <variant>
-        <configItem>
-          <name>$NAME</name>
-          <description>Insert Description</description>
-        </configItem>
-      </variant>
-    </variantList>
-  </layout>
-"
-  
-
+echo "$NEW_FILE" > $EVDEV
