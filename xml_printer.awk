@@ -17,7 +17,7 @@ XML_STRING="<layout>\n\
       <variant>\n\
         <configItem>\n\
           <name>"NAME"</name>\n\
-          <description>Insert Description</description>\n\
+          <description>"DESC"</description>\n\
         </configItem>\n\
       </variant>\n\
     </variantList>\n\

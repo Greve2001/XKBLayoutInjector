@@ -13,29 +13,11 @@ if [ $EUID != 0 ]; then
 fi
 
 ## Get arguments ##
-COUNTER=0
-while getopts f:n:a: OPTION; do
-    args+=("$OPTARG")
-    case $OPTION in
-        f) # Layout File Name
-            LAYOUT="${args[$COUNTER]}"
-            let COUNTER++
-            ;;
-        n) # Layout Name
-            NAME="${args[$COUNTER]}"
-            let COUNTER++
-            ;;
-        a) # Layout Abbreviation
-            ABBR="${args[$COUNTER]}"
-            let COUNTER++
-            ;;
-        ?)
-            echo "Wrong Usage"
-            exit 1
-            ;;
-    esac
-done
-shift "$(($OPTIND -1))"
+read -e -p "Path-to-file: " LAYOUT
+read -p "Name of Layout: " NAME
+read -p "Layout Abbreviation: " ABBR
+read -p "Description: " DESC
+
 
 ## Verify all arguments are given ##
 if [ -z "$NAME" ] || [ -z "$ABBR" ] || [ -z "$PATH" ]; then
@@ -43,9 +25,12 @@ if [ -z "$NAME" ] || [ -z "$ABBR" ] || [ -z "$PATH" ]; then
     exit 1
 fi
 
+## Create symlink 
 ln -s $LAYOUT "$SYMBOLS_PATH"/$LAYOUT
 
+## Add XML to file
 EVDEV="$RULES_PATH/evdev.xml"
-NEW_FILE="$(./xml_printer.awk -v NAME=$NAME -v ABBR=$ABBR -v LAYOUT=$LAYOUT $EVDEV)"
+NEW_FILE="$(./xml_printer.awk -v NAME="$NAME" -v ABBR="$ABBR" -v LAYOUT="$LAYOUT" -v DESC="$DESC" $EVDEV)"
 
+## Overwrite file
 echo "$NEW_FILE" > $EVDEV
