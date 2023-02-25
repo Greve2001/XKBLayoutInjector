@@ -1,8 +1,7 @@
 #!/usr/bin/awk -f
 
 BEGIN {
-XML_STRING="<layoutList>\n\
-  <layout>\n\
+XML_STRING="<layout>\n\
     <configItem>\n\
       <name>"LAYOUT"</name>\n\
       <shortDescription>"ABBR"</shortDescription>\n\
