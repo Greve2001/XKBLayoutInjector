@@ -6,12 +6,6 @@ XML_STRING="<layout>\n\
       <name>"LAYOUT"</name>\n\
       <shortDescription>"ABBR"</shortDescription>\n\
       <description>"NAME"</description>\n\
-      <countryList>	\n\
-        <iso3166Id></iso3166Id>\n\
-      </countryList>\n\
-      <languageList>\n\
-        <iso639Id>dan</iso639Id>\n\
-      </languageList>\n\
     </configItem>\n\
     <variantList>\n\
       <variant>\n\
