@@ -12,3 +12,4 @@ Run below command, and follow terminal prompts.
 ```
 ./injectLayout.sh
 ```
+OBS! After running the script you will need to restart your machine for the change to take place.
