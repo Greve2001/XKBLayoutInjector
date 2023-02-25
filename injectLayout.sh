@@ -1,6 +1,4 @@
 #!/bin/bash
-EVDEV=evdev3.xml
-
 SYMBOLS_PATH=/usr/share/X11/xkb/symbols
 RULES_PATH=/usr/share/X11/xkb/rules
 
@@ -45,8 +43,9 @@ if [ -z "$NAME" ] || [ -z "$ABBR" ] || [ -z "$PATH" ]; then
     exit 1
 fi
 
-# ln -s $LAYOUT "$SYMBOLS_PATH"/$LAYOUT
+ln -s $LAYOUT "$SYMBOLS_PATH"/$LAYOUT
 
+EVDEV="$RULES_PATH/evdev.xml"
 NEW_FILE="$(./xml_printer.awk -v NAME=$NAME -v ABBR=$ABBR -v LAYOUT=$LAYOUT $EVDEV)"
 
 echo "$NEW_FILE" > $EVDEV
