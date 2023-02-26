@@ -19,8 +19,8 @@ main () {
         input_prompting
     fi
 
-## Create symlink 
-    ln -s $layout "$symbols_path"/$layout
+## Create symlink
+    ln $layout "$symbols_path/$layout" 
 
 ## Add XML to file
     evdev="$rules_path/evdev.xml"
