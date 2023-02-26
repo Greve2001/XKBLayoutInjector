@@ -66,7 +66,14 @@ function interpret_input {
             -d|--description) desc="$2"; shift 2
             ;;
 
-            *) break
+            # Other arguments
+            *) if [ -z "$1" ]; then
+                break # Break if arg is empty
+            fi
+            echo "Not defined argument: $1"
+            help_info
+            exit 1
+            ;;
         esac
     done
 
