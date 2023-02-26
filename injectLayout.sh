@@ -42,11 +42,14 @@ main () {
 function interpret_input {
     num_args=$#
 
+    ## If there are no arguments, return
+    if [ $num_args -eq  0  ]; then
+        return
+    fi
+
     while true;  do
         case $1 in
             # Meta flags
-            -q|--quick) quick=true; shift
-            ;;
             -h|--help) help_info; exit 0
             ;;
 
@@ -66,25 +69,15 @@ function interpret_input {
         esac
     done
 
-    # If the script is not in quick mode, then stop wasting time checking args
-    if [ $quick = false ]; then
-
-        # If there is providere flags and -q|--quick is not provided, throw error
-        if [ ! $num_args -eq  0  ]; then
-            echo "In if!"
-            help_info
-            exit 1
-        fi
-
-        return
-    fi
-
     ## Verify all arguments are given
     if [ -z "$name" ] || [ -z "$abbr" ] || [ ! -f "$layout" ]; then
         echo "Please provide all arguments"
         help_info
         exit 1
     fi
+
+    ## Script is a oneliner
+    quick=true
 }
 
 
