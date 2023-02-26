@@ -5,15 +5,16 @@ rules_path=/usr/share/X11/xkb/rules
 main () {
     quick=false
 
+## Interpret input
+    interpret_input "$@"
+
 ## Ask for Sudo 
     if [ $EUID != 0 ]; then
         sudo "$0" "$@"
         exit $?
     fi
 
-## Interpret input
-    interpret_input "$@"
-        
+## If quick mode is not true, start prompting
     if [ $quick = false ]; then
         input_prompting
     fi
@@ -71,7 +72,7 @@ function interpret_input {
 
     ## Verify all arguments are given
     if [ -z "$name" ] || [ -z "$abbr" ] || [ ! -f "$layout" ]; then
-        echo "Please provide all arguments"
+        echo "Please provide all mandatory arguments"
         help_info
         exit 1
     fi
@@ -110,7 +111,7 @@ function input_prompting {
         if [ ! -z "$abbr" ]; then 
             break 
         fi
-        echo "The abbrivation must not be empty!"
+        echo "The abbreviation must not be empty!"
     done
 
     # Description
@@ -120,7 +121,24 @@ function input_prompting {
 
 ## Print help information
 function help_info {
-    echo "Help Comming!"
+    help_string="
+Basic Usage:
+    [1] (Sequential Prompting)  injectLayout.sh
+    [2] (One-liner using flags) injectLayout -f file/path -n layout-name -a layout-abbreviation
+
+Options (M: Mandatory, O: Optional):
+    [?] -h, --help              Prints information about basic usage and different flag options
+
+    [M] -f, --file              Path to symbols file (layout) that will be symlinked
+    [M] -n, --name              Name of the layout, used for identification
+    [M] -a, --abbreviation      Abbreviation of the layout, used when dispaying which keyboard is in use on most DE's
+
+    [O] -d, --description       Description of the keyboard. Gives detailed explanation of the keyboards layout
+
+Remarks:
+    - Your machine must be restarted after injecting the layout, for the change to have effect.
+"
+    echo "$help_string"
 }
 
 main "$@"
